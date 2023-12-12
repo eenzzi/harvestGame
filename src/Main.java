@@ -7,6 +7,9 @@ public class Main {
 
     public static void main(String[] args)  {
 
+        MerchantVisit merchantVisit = new MerchantVisit(20, 15);
+        merchantVisit.start();
+
         while (true) {
             System.out.println("1. 심기 2. 물주기 3. 팔기 4. 종료");
             int input = sc.nextInt();
@@ -58,9 +61,9 @@ public class Main {
         System.out.println("어떤 밭에 물을 줄지 선택하세요.");
         int input = sc.nextInt() - 1;
 
-        if (field[input] != null) {
+        try {
             field[input].water();
-        } else {
+        } catch (NullPointerException e) {
             System.out.println("작물을 심어주세요.");
         }
     }
@@ -69,14 +72,15 @@ public class Main {
         System.out.println("어떤 밭의 작물을 팔지 선택하세요.");
         int input = sc.nextInt() - 1;
 
-        if (field[input] != null) {
+
+        try {
             boolean sold = field[input].sell();
             if (sold) {
                 field[input] = null;
             } else {
                 System.out.println("작물을 팔 수 없습니다.");
             }
-        } else {
+        } catch (NullPointerException e) {
             System.out.println("작물을 심어주세요.");
         }
 

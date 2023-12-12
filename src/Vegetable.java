@@ -1,4 +1,4 @@
-public abstract class Vegetable {
+public class Vegetable {
 
     protected int waterNeed;
     protected int currentWater;
@@ -20,6 +20,16 @@ public abstract class Vegetable {
         }
     }
 
-    public abstract boolean sell();
+    public boolean sell() {
+        if (MerchantVisit.isMerchant) {
+            this.price *= 2;
+        }
 
+        if (this.currentWater == this.waterNeed) {
+            System.out.println(this.price + "원에 작물을 팔았습니다.");
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
